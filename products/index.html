@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0A1628">
+<title>Products — Nnamdi Okorafor</title>
+<meta name="description" content="Three products: PodMaster3000 (AI podcast studio), a Telegram-driven agent harness, and The HCA Daily (healthcare-administration fluency training).">
+<style>
+:root{--navy:#0A1628;--paper:#F6F3EE;--ink:#111827;--coral:#C53030;--gold:#C4A35A;
+--cn-bg:#F6F3EE;--cn-fg:#111827;--cp-bg:#0A1628;--cp-fg:#F6F3EE;
+--hair:rgba(17,24,39,.14);--hair-n:rgba(246,243,238,.16);
+--muted:rgba(17,24,39,.64);--muted-n:rgba(246,243,238,.70);
+--f:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--f);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;background:var(--ink);color:var(--paper);padding:12px 16px;z-index:99;border-radius:6px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:4px}
+.on-navy :focus-visible{outline-color:var(--paper)}
+.nav{position:sticky;top:0;z-index:50;background:rgba(10,22,40,.94);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--hair-n);color:var(--paper)}
+.nav-in{max-width:1080px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:24px}
+.mark{display:flex;align-items:center;gap:11px;font-weight:660;font-size:.95rem;text-decoration:none;white-space:nowrap}
+.mark .no{width:27px;height:27px;border-radius:5px;background:var(--paper);color:var(--navy);display:grid;place-items:center;font-size:.7rem;font-weight:780;flex:0 0 27px}
+.nav-links{display:flex;gap:22px;margin-left:8px}
+.nav-links a{font-size:.9rem;text-decoration:none;color:var(--muted-n);padding:11px 0;transition:color .15s}
+.nav-links a:hover{color:var(--paper)}.nav-links a[aria-current]{color:var(--paper);font-weight:640}
+.nav-act{margin-left:auto;display:flex;align-items:center;gap:20px}
+.nav-act .txt{font-size:.9rem;text-decoration:none;color:var(--muted-n);padding:11px 0}
+.nav-act .txt:hover{color:var(--paper)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:13px 22px;border-radius:7px;font-size:.94rem;font-weight:640;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:opacity .15s}
+.btn-navy{background:var(--cn-bg);color:var(--cn-fg)}.btn-paper{background:var(--cp-bg);color:var(--cp-fg)}
+.btn-coral{background:var(--coral);color:#fff}.btn:hover{opacity:.92}
+.tlink{display:inline-flex;align-items:center;gap:7px;font-size:.93rem;font-weight:620;text-decoration:none;padding:12px 0;border-bottom:1px solid currentColor;min-height:44px}
+.eyebrow{font-size:12px;letter-spacing:.20em;text-transform:uppercase;font-weight:650;color:var(--gold)}
+h1{font-size:clamp(2rem,4.6vw,3.1rem);line-height:1.06;letter-spacing:-.028em;font-weight:750}
+h2{font-size:clamp(1.5rem,3vw,2.05rem);line-height:1.14;letter-spacing:-.02em;font-weight:720}
+p{font-size:1.02rem}
+header.page{background:var(--navy);color:var(--paper);padding:clamp(48px,7vw,84px) 0 clamp(44px,6vw,70px);border-bottom:1px solid var(--hair-n)}
+header.page h1{margin:16px 0;max-width:20ch}
+header.page .lede{font-size:clamp(1.04rem,1.8vw,1.2rem);color:var(--muted-n);max-width:56ch}
+section{padding:clamp(54px,7vw,86px) 0}.on-navy{background:var(--navy);color:var(--paper)}
+.prod{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,4.4vw,56px);align-items:start}
+.prod.flip .visual{order:2}.prod h2{margin-bottom:8px}
+.prod .kick{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);font-weight:660;margin-bottom:12px}
+.prod .desc{font-size:1.05rem;max-width:52ch;margin:14px 0 20px}
+.specs{list-style:none;margin:0 0 22px;padding:0}
+.specs li{font-size:.95rem;padding:9px 0;border-top:1px solid var(--hair);display:flex;gap:11px;align-items:baseline}
+.specs li:last-child{border-bottom:1px solid var(--hair)}
+.on-navy .specs li{border-color:var(--hair-n)}
+.specs b{font-weight:660;min-width:118px;flex:0 0 118px}
+.specs span{color:var(--muted)}.on-navy .specs span{color:var(--muted-n)}
+.cta-row{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.shot{border:1px solid var(--hair);border-radius:10px;overflow:hidden;background:#fff}
+.shot img{width:100%;display:block}
+.shot img.fill{height:100%;object-fit:cover}
+.shot-cap{font-size:.78rem;color:var(--muted);padding:10px 12px;border-top:1px solid var(--hair)}
+.stack2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.diagram{border:1px solid var(--hair-n);border-radius:10px;background:#0d1c33;padding:20px}
+.diagram svg{width:100%;height:auto;display:block}
+.dlbl{font:600 12px ui-sans-serif,system-ui;fill:#F6F3EE}
+.dsub{font:400 10.5px ui-sans-serif,system-ui;fill:rgba(246,243,238,.66)}
+.dbox{fill:#12253f;stroke:rgba(246,243,238,.22)}
+.dline{stroke:rgba(246,243,238,.30);stroke-width:1.4;fill:none}
+.note{margin-top:26px;padding:16px 18px;border:1px solid var(--hair);border-radius:9px;font-size:.92rem;color:var(--muted);background:rgba(255,255,255,.6)}
+.on-navy .note{border-color:var(--hair-n);color:var(--muted-n);background:rgba(255,255,255,.03)}
+.contact{background:var(--paper);border-top:1px solid var(--hair)}
+.contact h2{margin-bottom:12px;max-width:18ch}
+.contact .lede{color:var(--muted);max-width:54ch;margin-bottom:28px}
+.contact-cta{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.mailto{font-size:.95rem;font-weight:600;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+footer{background:var(--navy);color:var(--paper);padding:38px 0;border-top:1px solid var(--hair-n)}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;font-size:.83rem;color:var(--muted-n)}
+.foot a{text-decoration:none;color:var(--muted-n);padding:10px 0;display:inline-block}
+.foot a:hover{color:var(--paper)}hr.sep{border:0;height:1px;background:var(--hair);margin:0}
+@media(max-width:900px){.prod{grid-template-columns:1fr;gap:26px}.prod.flip .visual{order:0}.nav-links{display:none}.specs b{min-width:0;flex:0 0 auto}.specs li{flex-direction:column;gap:2px}}
+@media(max-width:560px){.wrap,.nav-in{padding-left:20px;padding-right:20px}.nav-act .txt{display:none}.stack2{grid-template-columns:1fr}.foot{flex-direction:column;align-items:flex-start;gap:6px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ══════════════════════════════════════════════════════════════════
+   MOBILE LAYER + BRAND MARK
+   Mobile previously had NO way to navigate (nav links were simply
+   hidden) and the hero portrait consumed a full screen. Both fixed.
+   ══════════════════════════════════════════════════════════════════ */
+.mark{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.mark-ico{width:26px;height:26px;flex:none;color:var(--gold)}
+.mark-txt{display:flex;flex-direction:column;line-height:1.15}
+.mark-txt b{font-weight:600;font-size:15px;letter-spacing:.01em}
+.mark-txt i{font-style:normal;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+            color:var(--muted);margin-top:2px}
+
+.nav-toggle{display:none;appearance:none;background:none;border:1px solid var(--hair);
+  border-radius:9px;width:44px;height:44px;padding:0;cursor:pointer;
+  align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.nav-toggle span{display:block;width:17px;height:1.6px;background:var(--text);border-radius:2px;
+  transition:transform 200ms ease,opacity 200ms ease}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(5.6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.6px) rotate(-45deg)}
+
+.nav-drawer{position:fixed;inset:0;z-index:120;background:var(--bg);
+  display:flex;flex-direction:column;gap:2px;padding:20px 22px 40px;
+  overflow-y:auto;animation:drawerIn 180ms ease both}
+@keyframes drawerIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.nav-drawer[hidden]{display:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;margin-bottom:12px;border-bottom:1px solid var(--hair)}
+.drawer-brand{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.nav-close{appearance:none;background:none;border:1px solid var(--hair);border-radius:9px;
+  color:var(--text);width:44px;height:44px;font-size:24px;line-height:1;cursor:pointer}
+.nav-drawer > a{display:flex;align-items:center;min-height:56px;padding:6px 2px;
+  font-size:22px;font-family:var(--display);color:var(--text);text-decoration:none;
+  border-bottom:1px solid var(--hair)}
+.nav-drawer > a:active{color:var(--gold)}
+.nav-drawer .drawer-cta{justify-content:center;margin-top:22px;border-bottom:none;
+  font-family:var(--ui);font-size:16px;
+  /* the drawer styles every <a> with a near-white colour; without this the button
+     is near-white text on a near-white pill and reads as an EMPTY button. */
+  color:var(--bg)}
+.nav-drawer .drawer-mail{font-family:var(--ui);font-size:15px;color:var(--muted);
+  border-bottom:none;min-height:44px}
+body.nav-open{overflow:hidden}
+
+/* ── phones ─────────────────────────────────────────────────────── */
+@media (max-width: 879px){
+  .nav-links,.nav-linkedin,.nav-cta{display:none}
+  .nav-toggle{display:inline-flex}
+  .mark-txt b{font-size:14px}
+  .mark-txt i{font-size:9.5px;letter-spacing:.12em}
+
+  /* the hero portrait was a full screen tall — cap it and set it beside the text */
+  .hero{padding-top:var(--s6)}
+  .hero .portrait, .hero-img, .hero figure, .hero img{max-width:230px}
+  .hero img[src*="hero-portrait"]{max-width:230px;width:100%;height:auto;border-radius:14px}
+
+  /* role chips were stacking into a tall column */
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chips > *{width:auto;flex:0 0 auto}
+
+  /* reclaim the dead vertical space */
+  .band{padding-top:56px;padding-bottom:56px}
+  h1{font-size:clamp(30px,10vw,42px);line-height:1.06}
+  .eyebrow{font-size:10px;letter-spacing:.11em}
+  h2{font-size:clamp(23px,7vw,31px)}
+  .big{font-size:clamp(27px,9vw,40px)}
+  p{font-size:15.5px;line-height:1.62}
+  .cta-row{flex-direction:column;align-items:stretch;gap:10px}
+  .cta-row .btn{width:100%;justify-content:center;min-height:50px}
+
+  /* 44px minimum tap targets everywhere */
+  a.btn, .tlink, .foot-in a{min-height:44px;display:inline-flex;align-items:center}
+  .statrow{grid-template-columns:repeat(2,1fr);gap:18px}
+  .adv{grid-template-columns:1fr}
+}
+
+/* the About section is now text-only (owner removed the second portrait) */
+#about .about-in{grid-template-columns:1fr;max-width:74ch}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav on-navy" aria-label="Primary">
+  <div class="nav-in">
+    <a class="mark" href="/" aria-label="Nnamdi Okorafor — home"><span class="no" aria-hidden="true">NO</span><span aria-hidden="true">Nnamdi Okorafor</span></a>
+    <div class="nav-links">
+      <a href="/products/" aria-current="page">Products</a>
+      <a href="/#work">Work</a><a href="/#advisory">Advisory</a>
+      <a href="/#operations">Operations</a><a href="/#writing">Writing</a>
+    </div>
+    <div class="nav-act">
+      <a class="txt" href="https://www.linkedin.com/in/nnamdiokorafor" rel="noopener">LinkedIn</a>
+      <a class="btn btn-navy" href="/#contact">Book a fit call</a>
+    </div>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navmenu"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button></div>
+</nav>
+  <div class="nav-drawer" id="navmenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+    <div class="drawer-head">
+      <span class="drawer-brand">Clinician Signature Advisory</span>
+      <button class="nav-close" type="button" aria-label="Close menu">&times;</button>
+    </div>
+    <a href="/#work">Work</a>
+    <a href="/#advisory">Advisory</a>
+    <a href="/#writing">Writing</a>
+    <a href="/clinician-signature/">Clinician Sign</a>
+    <a href="https://www.linkedin.com/in/nnamdiokorafor" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn drawer-cta" data-book href="/#close">Book a free 20-min call</a>
+    <a class="drawer-mail" href="/#close" data-u="nnamdi" data-d="cliniciansignature.com">Email</a>
+  </div>
+<main id="main">
+<header class="page on-navy">
+  <div class="wrap">
+    <p class="eyebrow">Products</p>
+    <h1>Three things I built that run without me.</h1>
+    <p class="lede">One takes a raw recording to a publish-ready package. The other runs an operating cadence from a phone. Both are in daily use — not concepts.</p>
+  </div>
+</header>
+<section>
+  <div class="wrap prod">
+    <div>
+      <p class="kick">Product 01 — Podcast operations</p>
+      <h2>PodMaster3000</h2>
+      <p class="desc">An AI podcast studio. Drop in a recording — audio or video, any length, including phone audio — and the pipeline takes it from raw file to publish-ready package with no settings to configure.</p>
+      <ul class="specs">
+        <li><b>Pipeline</b><span>Transcribe → edit → master → QC → clips</span></li>
+        <li><b>Release gate</b><span>QC hard-fail blocks publish. Not overridable by API, UI, or agent.</span></li>
+        <li><b>Isolation</b><span>Per-user media paths; traversal attempts rejected</span></li>
+        <li><b>Built for</b><span>Non-engineers — &ldquo;no settings to configure&rdquo;</span></li>
+        <li><b>Status</b><span>Free beta — 2 episodes/month</span></li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn btn-paper" href="https://studio.podmaster3000.com" rel="noopener">Open the studio</a>
+        <a class="tlink" href="https://podmaster3000.com" rel="noopener">podmaster3000.com →</a>
+      </div>
+      <p class="note"><strong>Being straight about the commercial state:</strong> this is a free-only beta while billing stays switched off. It&rsquo;s real, it&rsquo;s running, and people can use it today — I&rsquo;m simply not selling seats yet.</p>
+    </div>
+    <div class="visual">
+      <div class="shot">
+        <img src="assets/studio-ui.jpg" alt="PodMaster3000 studio console — drag-and-drop upload with pipeline status and episode player">
+        <p class="shot-cap">The studio console. Drop a recording; the agents take it from there.</p>
+      </div>
+      <div class="stack2">
+        <div class="shot">
+          <img src="assets/sn-cover.jpg" alt="Signal &amp; Noise podcast cover art — audio waveform and wordmark">
+          <p class="shot-cap">Signal &amp; Noise — the show it produces.</p>
+        </div>
+        <div class="shot">
+          <img class="fill" src="assets/sn-wordmark.png" alt="Signal &amp; Noise wordmark">
+          <p class="shot-cap">Brand system, designed in-repo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="sep">
+<section class="on-navy">
+  <div class="wrap prod flip">
+    <div>
+      <p class="kick" style="color:var(--gold)">Product 02 — Agent operations</p>
+      <h2>A Telegram-driven agent harness</h2>
+      <p class="desc">An operations harness where every function of a business runs as an isolated agent you talk to from Telegram. You send a message; the agent has memory, tools and a schedule, and it acts.</p>
+      <ul class="specs">
+        <li><b>Interface</b><span>Telegram — DMs and group channels</span></li>
+        <li><b>Profiles</b><span>15 isolated agents, each with its own memory, skills and tool access</span></li>
+        <li><b>Schedule</b><span>12 recurring jobs across 7 profiles</span></li>
+        <li><b>Tools</b><span>Browser automation, email, files, shell, APIs</span></li>
+        <li><b>Authority</b><span>Owners approve; agents execute. Nothing moves money unattended.</span></li>
+      </ul>
+      <div class="cta-row">
+        <a class="tlink" href="/#contact" style="color:var(--paper)">Ask me how it&rsquo;s built →</a>
+      </div>
+      <p class="note">This is the harness I run my own operations on — the same one that produced the page you&rsquo;re reading, from a phone, over a weekend.</p>
+    </div>
+    <div class="visual">
+      <div class="diagram"><svg viewBox="0 0 520 430" role="img" aria-label="Architecture diagram: Telegram is the interface; isolated agent profiles each hold memory, skills and tools; scheduled jobs run unattended; the owner approves irreversible actions."><rect class="dbox" x="185" y="14" width="150" height="46" rx="8"/><text class="dlbl" x="260" y="35" text-anchor="middle" style="font-size:12px">Owner</text><text class="dsub" x="260" y="51" text-anchor="middle">approves the irreversible</text><path class="dline" d="M260 60 V 96"/><rect class="dbox" x="185" y="96" width="150" height="52" rx="8"/><text class="dlbl" x="260" y="120" text-anchor="middle" style="font-size:12px">Telegram</text><text class="dsub" x="260" y="136" text-anchor="middle">DMs &middot; group channels</text><path class="dline" d="M260 148 V 180"/><text class="dsub" x="272" y="170">message</text><rect class="dbox" x="34" y="180" width="452" height="74" rx="10"/><text class="dsub" x="50" y="200">isolated agent profiles</text><rect x="50" y="210" width="76" height="30" rx="6" fill="#0A1628" stroke="rgba(246,243,238,.22)"/><text class="dlbl" x="88" y="229" text-anchor="middle" style="font-size:10.5px">personal</text><rect x="134" y="210" width="76" height="30" rx="6" fill="#0A1628" stroke="rgba(246,243,238,.22)"/><text class="dlbl" x="172" y="229" text-anchor="middle" style="font-size:10.5px">ops / CoS</text><rect x="218" y="210" width="76" height="30" rx="6" fill="#0A1628" stroke="rgba(246,243,238,.22)"/><text class="dlbl" x="256" y="229" text-anchor="middle" style="font-size:10.5px">finance</text><rect x="302" y="210" width="76" height="30" rx="6" fill="#0A1628" stroke="rgba(246,243,238,.22)"/><text class="dlbl" x="340" y="229" text-anchor="middle" style="font-size:10.5px">product</text><rect x="386" y="210" width="84" height="30" rx="6" fill="#0A1628" stroke="rgba(246,243,238,.22)"/><text class="dlbl" x="428" y="229" text-anchor="middle" style="font-size:10.5px">+ 11 more</text><path class="dline" d="M120 254 V 288"/><path class="dline" d="M260 254 V 288"/><path class="dline" d="M400 254 V 288"/><rect class="dbox" x="34" y="288" width="152" height="52" rx="8"/><text class="dlbl" x="110" y="312" text-anchor="middle" style="font-size:11.5px">Memory + skills</text><text class="dsub" x="110" y="328" text-anchor="middle">per-profile</text><rect class="dbox" x="196" y="288" width="128" height="52" rx="8"/><text class="dlbl" x="260" y="312" text-anchor="middle" style="font-size:11.5px">Tools</text><text class="dsub" x="260" y="328" text-anchor="middle">browser &middot; mail &middot; shell</text><rect class="dbox" x="334" y="288" width="152" height="52" rx="8"/><text class="dlbl" x="410" y="312" text-anchor="middle" style="font-size:11.5px">Schedule</text><text class="dsub" x="410" y="328" text-anchor="middle">12 recurring jobs</text><path class="dline" d="M260 340 V 372"/><rect x="140" y="372" width="240" height="44" rx="8" fill="#0d1c33" stroke="rgba(196,163,90,.45)"/><text class="dlbl" x="260" y="393" text-anchor="middle">Works while you sleep</text><text class="dsub" x="260" y="407" text-anchor="middle">and reports to the same thread</text></svg></div>
+      <p class="shot-cap" style="color:var(--muted-n);border-color:var(--hair-n)">How the harness is wired. Diagram — the interface itself is a Telegram thread.</p>
+    </div>
+  </div>
+</section>
+<section class="on-navy">
+  <div class="wrap prod">
+    <div>
+      <p class="kick" style="color:var(--gold)">Product 03 — Healthcare admin fluency</p>
+      <h2>The HCA Daily</h2>
+      <p class="desc">A five-minute daily drill that teaches early-career healthcare administration students the language hiring managers actually interview in — wRVUs, days in A/R, no-show rates. Fluency beats years on a r&eacute;sum&eacute;.</p>
+      <ul class="specs">
+        <li><b>Format</b><span>One metric, one tap, one line on why it matters — 5 min/day</span></li>
+        <li><b>Method</b><span>Retrieval practice and spaced repetition</span></li>
+        <li><b>Curriculum</b><span>R&eacute;sum&eacute; metrics &middot; Operational vocabulary &middot; LinkedIn visibility &middot; Interview delivery</span></li>
+        <li><b>Trained by</b><span>Dr. Ashley Hussain-Okorafor, DBA — former lecturer and hiring-side administrator</span></li>
+        <li><b>Reach</b><span>6,000+ healthcare leaders</span></li>
+        <li><b>Pricing</b><span>Interview Answer Vault $27 one-time &middot; full Career Accelerator</span></li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn btn-navy" href="https://thehcadaily.com" rel="noopener">Open The HCA Daily</a>
+        <a class="tlink" href="https://thehcadaily.com" rel="noopener" style="color:var(--paper)">thehcadaily.com &rarr;</a>
+      </div>
+      <p class="note">This one is live and selling &mdash; a free 90-second Scorecard leads into paid products. Of the three, it's the furthest along commercially.</p>
+    </div>
+    <div class="visual">
+      <div class="shot">
+        <img src="assets/hca-drill.jpg" alt="The HCA Daily daily drill &mdash; the metric question, the answer options, and why hiring managers care">
+        <p class="shot-cap">The daily drill. The product <em>is</em> the mechanic &mdash; answer, then read why it matters.</p>
+      </div>
+      <div class="shot" style="margin-top:14px">
+        <div style="display:flex;gap:16px;align-items:center;padding:16px;background:#fff">
+          <img src="assets/hca-trainer.jpg" alt="Dr. Ashley Hussain-Okorafor, DBA — the trainer behind The HCA Daily" style="width:104px;height:104px;border-radius:50%;object-fit:cover;flex:0 0 104px">
+          <div>
+            <p style="font-weight:660;font-size:.95rem;color:var(--ink)">Dr. Ashley Hussain-Okorafor, DBA</p>
+            <p style="font-size:.88rem;color:var(--muted)">Former lecturer and hiring-side administrator &mdash; the curriculum is built from the other side of the interview table.</p>
+          </div>
+        </div>
+        <p class="shot-cap">Trained by someone who made the hiring decisions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Want to see either one running?</h2>
+    <p class="lede">I&rsquo;ll walk you through the studio, the harness, or both — and tell you honestly what&rsquo;s finished and what isn&rsquo;t.</p>
+    <div class="contact-cta">
+      <a class="btn btn-coral" href="mailto:nnamdi@nnamdiokorafor.com?subject=Products">Ask me about these</a>
+      <a class="mailto" href="mailto:nnamdi@nnamdiokorafor.com">nnamdi@nnamdiokorafor.com</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr">2026</span> Nnamdi Valentine Okorafor, BSN, RN</span>
+    <span>
+      <a href="/">Home</a> &middot;
+      <a href="https://www.linkedin.com/in/nnamdiokorafor" rel="noopener">LinkedIn</a> &middot;
+      <a href="https://x.com/NnamdiOkorafor" rel="noopener">X</a> &middot;
+      <a href="mailto:nnamdi@nnamdiokorafor.com">Email</a>
+    </span>
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+// mobile menu — the nav links are hidden under 880px, so this is the only route to them
+(function () {
+  var t = document.querySelector('.nav-toggle'),
+      d = document.getElementById('navmenu'),
+      c = document.querySelector('.nav-close');
+  if (!t || !d) return;
+  function open()  { d.hidden = false; t.setAttribute('aria-expanded','true');
+                     document.body.classList.add('nav-open'); if (c) c.focus(); }
+  function close() { d.hidden = true;  t.setAttribute('aria-expanded','false');
+                     document.body.classList.remove('nav-open'); t.focus(); }
+  t.addEventListener('click', function () { d.hidden ? open() : close(); });
+  if (c) c.addEventListener('click', close);
+  d.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !d.hidden) close();
+  });
+  // if the viewport grows past the breakpoint, never leave the overlay stuck open
+  window.matchMedia('(min-width: 880px)').addEventListener('change', function (m) {
+    if (m.matches && !d.hidden) close();
+  });
+})();
+</script>
+</body>
+</html>

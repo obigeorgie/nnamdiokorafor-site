@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0A1628">
+<title>Signal &amp; Noise — conversations with interesting people</title>
+<meta name="description" content="Host Nnamdi Okorafor cuts through the noise to find the signal: real talk with founders, nurses, creators and curious minds about building, health, money and meaning.">
+<meta property="og:title" content="Signal &amp; Noise">
+<meta property="og:description" content="Conversations with interesting people. Hosted by Nnamdi Okorafor.">
+<meta property="og:image" content="/signal-and-noise/assets/artwork-1400.png">
+<meta name="color-scheme" content="dark">
+<link rel="alternate" type="application/rss+xml" title="Signal &amp; Noise" href="https://podmaster3000.com/podcast.rss.xml">
+<link rel="preload" as="image" href="/signal-and-noise/assets/artwork-1400.png">
+<style>
+:root{
+  /* palette derived from the show's own cover art */
+  --bg:#0A0908; --raised:#141210; --text:#F5F3F0; --muted:#9A948E; --hair:#221E1B;
+  --sig:#F0722A;   /* signal — the orange in the wordmark */
+  --noise:#1FA89A; /* the teal ampersand */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px; --s10:128px;
+  --f:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Geist","Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--f);font-size:18px;line-height:1.55;
+     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--sig);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;background:var(--text);color:var(--bg);padding:10px 16px;z-index:9}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(10,9,8,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--hair)}
+.nav-in{max-width:1080px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:var(--s5)}
+.nav .wm{font-weight:800;font-size:15px;letter-spacing:-.01em}
+.nav .wm i{color:var(--noise);font-style:normal}
+.nav-links{display:flex;gap:var(--s5);font-size:14px;margin-left:auto;align-items:center}
+.nav-links a{color:var(--muted);transition:color 200ms ease-out}
+.nav-links a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--sig);color:#180D05;padding:11px 20px;
+     border-radius:999px;font-size:14px;font-weight:650;transition:transform 180ms ease-out,opacity 180ms ease-out}
+.btn:hover{opacity:.9;transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--hair)}
+.btn.ghost:hover{border-color:var(--muted)}
+
+/* hero */
+.hero{padding:var(--s9) 0 var(--s8);display:grid;grid-template-columns:1.05fr .95fr;gap:var(--s8);align-items:center}
+.wave{margin-bottom:var(--s5)}
+h1{font-size:clamp(2.6rem,6.2vw,4.4rem);line-height:1;letter-spacing:-.035em;font-weight:800}
+h1 .sig{color:var(--sig)} h1 .amp{color:var(--noise)}
+.rule{height:1px;background:var(--hair);margin:var(--s5) 0}
+.tag{font-size:clamp(1.02rem,2vw,1.32rem);color:var(--text);opacity:.94}
+.host{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:var(--s3)}
+.blurb{color:var(--muted);font-size:17px;margin-top:var(--s5);max-width:60ch}
+.ctas{display:flex;gap:var(--s3);margin-top:var(--s6);flex-wrap:wrap}
+.art{border-radius:18px;border:1px solid var(--hair);box-shadow:0 24px 60px rgba(0,0,0,.55)}
+
+.band{padding:var(--s9) 0;border-top:1px solid var(--hair)}
+h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;letter-spacing:-.02em;margin-bottom:var(--s6)}
+h2 span{color:var(--sig)}
+
+/* listen */
+.listen{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--s3)}
+.plat{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);padding:var(--s4) var(--s5);
+      border:1px solid var(--hair);border-radius:12px;background:var(--raised);transition:border-color 200ms ease-out}
+.plat:hover{border-color:var(--sig)}
+.plat b{font-size:15px;font-weight:600}
+.plat small{color:var(--muted);font-size:12px}
+
+/* episodes */
+.ep{padding:var(--s6) 0;border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto;gap:var(--s5)}
+.ep:first-of-type{border-top:none}
+.ep h3{font-size:1.15rem;font-weight:650;letter-spacing:-.01em;max-width:34ch}
+.ep .num{color:var(--sig);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+.ep p{color:var(--muted);font-size:15.5px;margin-top:var(--s2);max-width:62ch}
+.ep time{color:var(--muted);font-size:14px;white-space:nowrap}
+.chapters{margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4)}
+.chapters span{font-size:13px;color:var(--muted)}
+.chapters b{color:var(--text);font-weight:600}
+.soon{color:var(--muted);font-size:15px;font-style:italic}
+
+footer{padding:var(--s7) 0 var(--s8);border-top:1px solid var(--hair);color:var(--muted);font-size:14px}
+.foot{display:flex;gap:var(--s5);flex-wrap:wrap;align-items:center}
+.foot a:hover{color:var(--text)}
+
+@media (max-width:820px){
+  .wrap{padding:0 20px}
+  .nav-in{padding:12px 20px;gap:var(--s3)}
+  .nav-links{gap:var(--s4);font-size:13px}
+  .nav-links a.hide{display:none}
+  .hero{grid-template-columns:1fr;padding:var(--s7) 0 var(--s8);gap:var(--s6)}
+  .hero .art{max-width:420px}
+  .band{padding:var(--s8) 0}
+  .ep{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* ══════════════════════════════════════════════════════════════════
+   MOBILE LAYER + BRAND MARK
+   Mobile previously had NO way to navigate (nav links were simply
+   hidden) and the hero portrait consumed a full screen. Both fixed.
+   ══════════════════════════════════════════════════════════════════ */
+.mark{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.mark-ico{width:26px;height:26px;flex:none;color:var(--gold)}
+.mark-txt{display:flex;flex-direction:column;line-height:1.15}
+.mark-txt b{font-weight:600;font-size:15px;letter-spacing:.01em}
+.mark-txt i{font-style:normal;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+            color:var(--muted);margin-top:2px}
+
+.nav-toggle{display:none;appearance:none;background:none;border:1px solid var(--hair);
+  border-radius:9px;width:44px;height:44px;padding:0;cursor:pointer;
+  align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.nav-toggle span{display:block;width:17px;height:1.6px;background:var(--text);border-radius:2px;
+  transition:transform 200ms ease,opacity 200ms ease}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(5.6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.6px) rotate(-45deg)}
+
+.nav-drawer{position:fixed;inset:0;z-index:120;background:var(--bg);
+  display:flex;flex-direction:column;gap:2px;padding:20px 22px 40px;
+  overflow-y:auto;animation:drawerIn 180ms ease both}
+@keyframes drawerIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.nav-drawer[hidden]{display:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;margin-bottom:12px;border-bottom:1px solid var(--hair)}
+.drawer-brand{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.nav-close{appearance:none;background:none;border:1px solid var(--hair);border-radius:9px;
+  color:var(--text);width:44px;height:44px;font-size:24px;line-height:1;cursor:pointer}
+.nav-drawer > a{display:flex;align-items:center;min-height:56px;padding:6px 2px;
+  font-size:22px;font-family:var(--display);color:var(--text);text-decoration:none;
+  border-bottom:1px solid var(--hair)}
+.nav-drawer > a:active{color:var(--gold)}
+.nav-drawer .drawer-cta{justify-content:center;margin-top:22px;border-bottom:none;
+  font-family:var(--ui);font-size:16px;
+  /* the drawer styles every <a> with a near-white colour; without this the button
+     is near-white text on a near-white pill and reads as an EMPTY button. */
+  color:var(--bg)}
+.nav-drawer .drawer-mail{font-family:var(--ui);font-size:15px;color:var(--muted);
+  border-bottom:none;min-height:44px}
+body.nav-open{overflow:hidden}
+
+/* ── phones ─────────────────────────────────────────────────────── */
+@media (max-width: 879px){
+  .nav-links,.nav-linkedin,.nav-cta{display:none}
+  .nav-toggle{display:inline-flex}
+  .mark-txt b{font-size:14px}
+  .mark-txt i{font-size:9.5px;letter-spacing:.12em}
+
+  /* the hero portrait was a full screen tall — cap it and set it beside the text */
+  .hero{padding-top:var(--s6)}
+  .hero .portrait, .hero-img, .hero figure, .hero img{max-width:230px}
+  .hero img[src*="hero-portrait"]{max-width:230px;width:100%;height:auto;border-radius:14px}
+
+  /* role chips were stacking into a tall column */
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chips > *{width:auto;flex:0 0 auto}
+
+  /* reclaim the dead vertical space */
+  .band{padding-top:56px;padding-bottom:56px}
+  h1{font-size:clamp(30px,10vw,42px);line-height:1.06}
+  .eyebrow{font-size:10px;letter-spacing:.11em}
+  h2{font-size:clamp(23px,7vw,31px)}
+  .big{font-size:clamp(27px,9vw,40px)}
+  p{font-size:15.5px;line-height:1.62}
+  .cta-row{flex-direction:column;align-items:stretch;gap:10px}
+  .cta-row .btn{width:100%;justify-content:center;min-height:50px}
+
+  /* 44px minimum tap targets everywhere */
+  a.btn, .tlink, .foot-in a{min-height:44px;display:inline-flex;align-items:center}
+  .statrow{grid-template-columns:repeat(2,1fr);gap:18px}
+  .adv{grid-template-columns:1fr}
+}
+
+/* the About section is now text-only (owner removed the second portrait) */
+#about .about-in{grid-template-columns:1fr;max-width:74ch}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav"><div class="nav-in">
+  <a class="wm" href="#top">SIGNAL <i>&amp;</i> NOISE</a>
+  <div class="nav-links">
+    <a class="hide" href="#episodes">Episodes</a>
+    <a class="hide" href="#about">About</a>
+    <a href="https://podmaster3000.com/podcast.rss.xml">RSS</a>
+    <a class="btn" href="#listen">Subscribe</a>
+  </div>
+<button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navmenu"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button></div></nav>
+  <div class="nav-drawer" id="navmenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+    <div class="drawer-head">
+      <span class="drawer-brand">Clinician Signature Advisory</span>
+      <button class="nav-close" type="button" aria-label="Close menu">&times;</button>
+    </div>
+    <a href="/#work">Work</a>
+    <a href="/#advisory">Advisory</a>
+    <a href="/#writing">Writing</a>
+    <a href="/clinician-signature/">Clinician Sign</a>
+    <a href="https://www.linkedin.com/in/nnamdiokorafor" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn drawer-cta" data-book href="/#close">Book a free 20-min call</a>
+    <a class="drawer-mail" href="/#close" data-u="nnamdi" data-d="cliniciansignature.com">Email</a>
+  </div>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero wrap" id="top">
+    <div>
+      <svg class="wave" width="260" height="56" viewBox="0 0 260 56" aria-hidden="true">
+        <!-- the show's waveform motif, drawn inline -->
+        <g fill="#F0722A">
+          <rect x="6" y="22" width="5" height="12" rx="2.5"/><rect x="20" y="16" width="5" height="24" rx="2.5"/>
+          <rect x="62" y="10" width="5" height="36" rx="2.5"/><rect x="90" y="20" width="5" height="16" rx="2.5"/>
+          <rect x="118" y="2"  width="5" height="52" rx="2.5"/><rect x="146" y="14" width="5" height="28" rx="2.5"/>
+          <rect x="188" y="8"  width="5" height="40" rx="2.5"/><rect x="216" y="20" width="5" height="16" rx="2.5"/>
+          <rect x="244" y="24" width="5" height="8" rx="2.5"/>
+        </g>
+        <g fill="#F5F3F0" opacity=".92">
+          <rect x="34" y="14" width="5" height="28" rx="2.5"/><rect x="48" y="20" width="5" height="16" rx="2.5"/>
+          <rect x="76" y="6"  width="5" height="44" rx="2.5"/><rect x="104" y="12" width="5" height="32" rx="2.5"/>
+          <rect x="132" y="18" width="5" height="20" rx="2.5"/><rect x="160" y="10" width="5" height="36" rx="2.5"/>
+          <rect x="174" y="22" width="5" height="12" rx="2.5"/><rect x="202" y="16" width="5" height="24" rx="2.5"/>
+          <rect x="230" y="18" width="5" height="20" rx="2.5"/>
+        </g>
+      </svg>
+      <h1><span class="sig">SIGNAL</span> <span class="amp">&amp;</span> NOISE</h1>
+      <div class="rule"></div>
+      <p class="tag">Conversations with interesting people.</p>
+      <p class="host">Hosted by Nnamdi Okorafor</p>
+      <p class="blurb">Real talk with founders, nurses, creators and curious minds about building,
+        health, money and meaning. Cutting through the noise to find the signal.</p>
+      <div class="ctas">
+        <a class="btn" href="#listen">Listen now</a>
+        <a class="btn ghost" href="https://podmaster3000.com/podcast.rss.xml">RSS feed</a>
+      </div>
+    </div>
+    <img class="art" src="/signal-and-noise/assets/artwork-1400.png" width="1400" height="1400"
+         alt="Signal &amp; Noise podcast cover art" fetchpriority="high">
+  </section>
+
+  <!-- LISTEN -->
+  <section class="band" id="listen"><div class="wrap">
+    <h2>Where to <span>listen</span></h2>
+    <div class="listen">
+      <a class="plat" href="https://podcasts.apple.com/us/podcast/signal-noise/id6808139701">
+        <b>Apple Podcasts</b><small>Live</small></a>
+      <a class="plat" href="https://podmaster3000.com/podcast.rss.xml">
+        <b>RSS feed</b><small>Any player</small></a>
+      <a class="plat" href="https://podmaster3000.com/episodes/ep-001">
+        <b>Direct listen</b><small>Episode 1</small></a>
+      <span class="plat"><b>Spotify</b><small>In review</small></span>
+      <span class="plat"><b>YouTube</b><small>Channel pending</small></span>
+    </div>
+  </div></section>
+
+  <!-- EPISODES -->
+  <section class="band" id="episodes"><div class="wrap">
+    <h2>Episodes</h2>
+
+    <article class="ep">
+      <div>
+        <p class="num">Episode 001</p>
+        <h3>Inside IUL: Transparency, Trust, and Building a Financial Legacy</h3>
+        <p>Nnamdi sits down with <b>Aham Jamisen</b>, an independent IUL professional, on insurance
+          and financial planning — the role of community and events, why transparency matters when
+          discussing financial products, and why some advisors hesitate to record their
+          presentations. The conversation turns to compounding information through podcasts, and
+          what public speaking gives back.</p>
+        <div class="chapters">
+          <span><b>00:00</b> Industry events</span>
+          <span><b>02:00</b> Team and community</span>
+          <span><b>04:00</b> Asking questions</span>
+          <span><b>06:00</b> IUL legitimacy</span>
+          <span><b>08:00</b> Transparency in advice</span>
+          <span><b>10:00</b> Why advisors avoid recording</span>
+          <span><b>12:00</b> Compounding information</span>
+        </div>
+      </div>
+      <time>24 Aug 2026 · 40 min</time>
+    </article>
+
+    <article class="ep">
+      <div>
+        <p class="num">Episode 002</p>
+        <h3 class="soon">Recorded — release date to follow.</h3>
+      </div>
+      <time>Forthcoming</time>
+    </article>
+  </div></section>
+
+  <!-- ABOUT -->
+  <section class="band" id="about"><div class="wrap">
+    <h2>About the <span>show</span></h2>
+    <p class="blurb" style="font-size:19px;color:#D9D4CE;max-width:66ch">
+      Signal &amp; Noise is long-form conversation with people worth listening to — founders,
+      clinicians, creators and operators. The premise is simple: most of what surrounds a subject is
+      noise, and the useful part is the signal. Each episode goes looking for it.</p>
+    <p class="blurb" style="max-width:66ch">
+      Hosted by <b style="color:var(--text)">Nnamdi Okorafor</b> — RN, clinical nurse manager, and
+      builder of AI systems for healthcare and small business. Video first, because that is where
+      the audience actually is.</p>
+    <div class="ctas">
+      <a class="btn" href="https://nnamdiokorafor.com">About the host</a>
+      <a class="btn ghost" href="https://cal.com/nnamdiokorafor">Be a guest</a>
+    </div>
+  </div></section>
+
+  <footer><div class="wrap foot">
+    <span>© 2026 Signal &amp; Noise</span>
+    <a href="https://podmaster3000.com/podcast.rss.xml">RSS</a>
+    <a href="https://podcasts.apple.com/us/podcast/signal-noise/id6808139701">Apple Podcasts</a>
+    <a href="https://nnamdiokorafor.com">nnamdiokorafor.com</a>
+  </div></footer>
+</main>
+<script>
+// mobile menu — the nav links are hidden under 880px, so this is the only route to them
+(function () {
+  var t = document.querySelector('.nav-toggle'),
+      d = document.getElementById('navmenu'),
+      c = document.querySelector('.nav-close');
+  if (!t || !d) return;
+  function open()  { d.hidden = false; t.setAttribute('aria-expanded','true');
+                     document.body.classList.add('nav-open'); if (c) c.focus(); }
+  function close() { d.hidden = true;  t.setAttribute('aria-expanded','false');
+                     document.body.classList.remove('nav-open'); t.focus(); }
+  t.addEventListener('click', function () { d.hidden ? open() : close(); });
+  if (c) c.addEventListener('click', close);
+  d.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !d.hidden) close();
+  });
+  // if the viewport grows past the breakpoint, never leave the overlay stuck open
+  window.matchMedia('(min-width: 880px)').addEventListener('change', function (m) {
+    if (m.matches && !d.hidden) close();
+  });
+})();
+</script>
+</body>
+</html>

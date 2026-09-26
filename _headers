@@ -1,0 +1,24 @@
+# Cloudflare Pages security headers.
+# Applied at the edge — no zone-level API permission required, which matters because the
+# Cloudflare token in .env is scoped to Pages only (zone settings return 9109 Unauthorized).
+#
+# Why these exist: the site redirected HTTP->HTTPS correctly and had a valid certificate, but
+# sent NO Strict-Transport-Security header. Without HSTS a browser can still be downgraded to
+# plain HTTP on a later request, which is a legitimate "not secure" finding.
+#
+# NOTE ON `preload`: deliberately NOT set. Preload is a hard, slow-to-reverse commitment via
+# hstspreload.org. max-age + includeSubDomains gives the protection without that lock-in.
+# Add `; preload` only as a deliberate decision with eyes open.
+
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
+
+  # CSP verified against the real page first: the site loads NO external scripts and NO web
+  # fonts -- only outbound <a href> links, which CSP does not govern. It does use one inline
+  # <style> and one inline <script>, hence 'unsafe-inline' for those two directives only.
+  # img-src allows data: because the portrait/cover art may be inlined.
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'

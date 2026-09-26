@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nnamdi Okorafor, BSN, RN — Clinician Signature Advisory</title>
+<meta name="description" content="Clinical review for AI-health teams. Nnamdi Okorafor, BSN, RN — 16 years in nursing, clinical nurse manager in ambulatory infusion, and author of the Clinician Sign method. Advisory and operations audits through Clinician Signature Advisory.">
+<meta property="og:title" content="Nnamdi Okorafor, BSN, RN — Clinician Signature Advisory">
+<meta property="og:description" content="The clinician who signs the system. Clinical AI, infusion throughput, closed-loop agents.">
+<meta property="og:image" content="/assets/icon-512.png">
+<meta property="og:url" content="https://nnamdiokorafor.com/">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0A1628">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preload" as="image" href="/assets/hero-portrait.jpg" fetchpriority="high">
+<style>
+:root{
+  /* ── design tokens ──────────────────────────────────── */
+  --bg:#070B12;          /* dark-first ground */
+  --raised:#0E1622;      /* raised surface, used sparingly */
+  --text:#F3F1EC;        /* paper */
+  --muted:#9AA3B2;
+  --hair:#1C2430;        /* hairline */
+  --gold:#C4A35A;        /* the only accent */
+  /* spacing scale: 4 / 8 */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --s7:48px; --s8:64px; --s9:96px; --s10:128px; --s11:176px;
+  --r:14px;
+  --measure:640px;
+  --ui:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","Geist",Inter,Roboto,Helvetica,Arial,sans-serif;
+  --display:"Iowan Old Style","Palatino Linotype",Palatino,"Times New Roman",Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:var(--ui); font-size:18px; line-height:1.5;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--bg)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:16px;top:16px;background:var(--text);color:var(--bg);padding:10px 16px;z-index:99;border-radius:6px}
+
+/* ─ nav ────────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(7,11,18,.86);
+     backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid var(--hair)}
+.nav a{color:var(--muted);transition:color 200ms ease-out}
+.nav a:hover{color:var(--text)}
+.nav-in{max-width:1120px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;gap:var(--s6)}
+.mark{display:flex;align-items:center;gap:10px;color:var(--text);font-size:15px;letter-spacing:-.01em}
+.no{width:22px;height:22px;border:1px solid var(--hair);border-radius:5px;display:grid;place-items:center;
+    font-size:9px;font-weight:600;letter-spacing:.04em;color:var(--muted)}
+.nav-links{display:flex;gap:var(--s5);font-size:15px}
+.nav-spacer{flex:1}
+.btn{display:inline-block;background:var(--text);color:var(--bg);padding:10px 18px;border-radius:999px;
+     font-size:14px;font-weight:550;transition:opacity 200ms ease-out}
+.btn:hover{opacity:.85}
+
+/* ── 1 HERO ───────────────────────────────────────────── */
+.hero{display:grid;grid-template-columns:1fr 1.05fr;
+      align-items:center;gap:var(--s8);padding:var(--s8) 0 var(--s9)}
+.hero-copy{max-width:var(--measure)}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
+h1{font-family:var(--display);font-size:clamp(2.6rem,5.2vw,3.7rem);line-height:1;
+   letter-spacing:-.028em;font-weight:400;margin:var(--s4) 0 var(--s3)}
+/* the hook carries the weight now, not the name */
+.role{font-size:clamp(1.3rem,2.5vw,1.7rem);color:var(--text);letter-spacing:-.015em;
+      line-height:1.32;max-width:26ch}
+.line{font-size:18px;line-height:1.55;margin:var(--s5) 0 var(--s6);color:var(--text);opacity:.92}
+.cta-row{display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap}
+.tlink{color:var(--gold);border-bottom:1px solid rgba(196,163,90,.32);padding-bottom:2px;font-size:15px;
+       transition:border-color 180ms ease-out}
+.tlink:hover{border-color:var(--gold)}
+.hero-meta{font-size:13px;color:var(--muted);margin-top:var(--s6);letter-spacing:.01em}
+
+a.w-item{display:flex;text-decoration:none;color:inherit}
+a.w-item:hover h3{color:var(--gold)}
+.w-item.upcoming{opacity:.55}
+.signup{margin:40px 0 0;padding:26px 24px;border:1px solid var(--hair);border-radius:14px;background:var(--raised)}
+.signup h3{margin:0 0 6px;font-size:19px}
+.signup p{margin:0 0 16px;font-size:15px;color:var(--muted)}
+.signup form{display:flex;gap:10px;flex-wrap:wrap}
+.signup input{flex:1 1 220px;padding:11px 13px;border-radius:10px;border:1px solid var(--hair);background:var(--bg);color:var(--text);font-size:15px}
+.signup button{padding:11px 18px;border-radius:10px;border:0;background:var(--text);color:var(--bg);font-weight:600;cursor:pointer;font-size:15px}
+
+/* the circle portrait — identity mark in the hero, framed as a portrait not a headshot */
+.idrow{display:flex;align-items:center;gap:14px;margin-bottom:var(--s4)}
+.portrait-circle{display:block;width:52px;height:52px;border-radius:50%;flex:0 0 52px;
+  border:1px solid var(--hair);object-fit:cover}
+.idrow .eyebrow{margin:0;line-height:1.45}
+
+/* the hero visual — large, the identity of the page */
+.hero-portrait{position:relative}
+.hero-portrait img{border-radius:16px;width:100%;min-width:40vw;max-height:calc(100vh - 160px);
+                   object-fit:cover;object-position:50% 30%;transition:transform 280ms ease-out}
+.hero-portrait:hover img{transform:scale(1.02)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3) var(--s6);margin-top:var(--s5)}
+.facts dt{font-size:13px;color:var(--muted)}
+.facts dd{font-size:13px;color:var(--text);margin:0}
+
+/* ── bands: one idea each, lots of navy ──────────────── */
+.band{padding:var(--s9) 0;border-top:1px solid var(--hair)}
+/* vertical rhythm: not every band gets the same air. Uniform huge padding is what
+   makes a page read as an endless empty scroll. */
+.band-raised{background:var(--raised)}
+.band-tight{padding:var(--s8) 0}
+h2{font-size:clamp(1.55rem,2.8vw,2rem);font-weight:500;letter-spacing:-.02em;margin-bottom:var(--s6)}
+h2 .gold{color:var(--gold)}
+
+/* credential line + role chips (peer pattern: named roles read as authority) */
+.creds{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);
+       margin:0 0 var(--s3);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 var(--s4)}
+.chip{font-size:13px;color:var(--muted);border:1px solid var(--hair);border-radius:999px;
+      padding:6px 12px;line-height:1.3}
+/* proof card — portrait + verifiable credentials in one bordered unit */
+.proofcard{margin-top:var(--s4);border:1px solid var(--hair);border-radius:14px;
+           background:var(--raised);padding:var(--s5)}
+.proofcard ul{list-style:none}
+.proofcard li{position:relative;padding-left:20px;font-size:15px;color:var(--text);
+              margin-bottom:10px;line-height:1.4}
+.proofcard li:last-child{margin-bottom:0}
+.proofcard li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;
+                      border-radius:50%;background:var(--gold)}
+.proofcard em{font-style:normal;color:var(--text);border-bottom:1px solid rgba(196,163,90,.35)}
+
+/* ── 1b NUMBERS BAR — full width, one plane lighter, hard stat + caption ── */
+.stats-bar{background:var(--raised);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.stats-in{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s6);padding:var(--s7) 0}
+.stat .num{display:block;font-family:var(--display);font-size:clamp(2rem,3.4vw,2.7rem);
+           line-height:1;color:var(--text);letter-spacing:-.02em;margin-bottom:10px}
+.stat .cap{display:block;font-size:13px;color:var(--muted);line-height:1.45;max-width:30ch}
+@media (max-width:860px){
+  .stats-in{grid-template-columns:1fr 1fr;gap:var(--s5);padding:var(--s6) 0}
+  .stat .num{font-size:2rem}
+}
+
+/* ── 2 WORK — text rows, not tiles ───────────────────── */
+.row{display:grid;grid-template-columns:280px 1fr;gap:var(--s7);padding:var(--s6) 0;
+     border-top:1px solid var(--hair);align-items:start;transition:border-color 200ms ease-out}
+.row:first-of-type{border-top:none}
+.row:hover{border-top-color:#2A3444}
+.row:hover .still img{transform:scale(1.02);opacity:1}
+.row.noimg{grid-template-columns:1fr;gap:0}
+.row.noimg p{max-width:62ch}
+.still{aspect-ratio:16/10;overflow:hidden;border-radius:12px;background:var(--raised);
+       border:1px solid var(--hair)}
+/* was opacity:.78 -- a dark screenshot at 78% on a near-black ground reads as a FAILED
+   image load, not a dimmed one. Full opacity, and let the ring give it an edge. */
+.still img{width:100%;height:100%;object-fit:cover;opacity:1;
+           transition:transform 280ms ease-out,opacity 200ms ease-out}
+.row h3{font-size:1.15rem;font-weight:550;letter-spacing:-.01em;display:flex;justify-content:space-between;gap:var(--s4)}
+.row h3 em{font-style:normal;color:var(--muted);font-size:14px;font-weight:400;white-space:nowrap}
+.row p{color:var(--muted);font-size:16px;margin-top:var(--s2);max-width:56ch}
+
+/* ── 3 ADVISORY — two text blocks ────────────────────── */
+.adv{display:grid;grid-template-columns:1fr 1fr;gap:var(--s8)}
+.adv h3{font-size:1.05rem;font-weight:550;margin-bottom:var(--s3);letter-spacing:-.01em}
+.adv p{color:var(--muted);font-size:16px;max-width:44ch}
+.rate{display:block;margin-top:var(--s3);font-size:15px;color:var(--gold);letter-spacing:.01em}
+
+/* ── 4 WRITING ───────────────────────────────────────── */
+.w-item{display:grid;grid-template-columns:1fr auto;gap:var(--s5);padding:var(--s5) 0;border-top:1px solid var(--hair)}
+.w-item:first-of-type{border-top:none}
+.w-item h3{font-size:1.02rem;font-weight:500;letter-spacing:-.01em}
+.w-item p{color:var(--muted);font-size:15px;margin-top:var(--s1)}
+.w-item time{color:var(--muted);font-size:14px;white-space:nowrap}
+
+/* ── 5 ABOUT ─────────────────────────────────────────── */
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:var(--s8);align-items:center}
+.about p{font-size:19px;line-height:1.62;max-width:60ch}
+.about img{border-radius:14px;aspect-ratio:1/1;object-fit:cover;object-position:50% 18%;width:100%}
+
+/* practice identity + the single social mark */
+.practice-lede{color:var(--muted);font-size:16px;max-width:74ch;margin-top:calc(-1 * var(--s4));margin-bottom:var(--s7)}
+.foot-brand{color:var(--muted)}
+.foot-brand a{color:var(--gold);border-bottom:1px solid rgba(196,163,90,.32)}
+.foot-brand a:hover{border-color:var(--gold)}
+.close-sub{color:var(--muted);font-size:16px;margin-top:calc(-1 * var(--s5));margin-bottom:var(--s6)}
+a.soc{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+      border:1px solid var(--hair);border-radius:8px;color:var(--muted);transition:color 180ms,border-color 180ms}
+a.soc:hover{color:var(--text);border-color:var(--text)}
+a.soc svg{display:block}
+
+/* ── 6 CLOSE + FOOTER ────────────────────────────────── */
+.close{padding:var(--s11) 0;border-top:1px solid var(--hair)}
+.close .big{font-family:var(--display);font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.05;
+            letter-spacing:-.025em;margin-bottom:var(--s6);max-width:22ch}
+footer{padding:var(--s7) 0 var(--s9);border-top:1px solid var(--hair);color:var(--muted);font-size:14px}
+.foot-in{display:flex;gap:var(--s6);align-items:center;flex-wrap:wrap}
+.foot-in a{color:var(--muted)} .foot-in a:hover{color:var(--text)}
+
+@media (max-width:860px){
+  .wrap{padding:0 22px}
+  .nav-in{padding:12px 18px;gap:var(--s3)}
+  .nav-links{display:none}
+  /* the header was clunky on mobile: name + LinkedIn text + button all competed for 390px.
+     Drop the secondary text link (it lives in the footer) and let the CTA breathe. */
+  .nav a.mark{font-size:14px;gap:8px;min-width:0}
+  .mark .no{width:20px;height:20px;font-size:8px;flex:0 0 20px}
+  .nav .nav-linkedin{display:none}
+  .nav .btn{padding:9px 15px;font-size:13px;white-space:nowrap}
+  .hero{grid-template-columns:1fr;min-height:auto;padding:var(--s8) 0 var(--s9);gap:var(--s7)}
+  .hero-portrait{order:2}
+  .hero-portrait img{min-width:0;max-height:none}
+  .facts{grid-template-columns:1fr 1fr}
+  .row,.adv,.about{grid-template-columns:1fr;gap:var(--s5)}
+  .about img{max-width:340px}
+  .band{padding:var(--s9) 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ══════════════════════════════════════════════════════════════════
+   MOBILE LAYER + BRAND MARK
+   Mobile previously had NO way to navigate (nav links were simply
+   hidden) and the hero portrait consumed a full screen. Both fixed.
+   ══════════════════════════════════════════════════════════════════ */
+.mark{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.mark-ico{width:26px;height:26px;flex:none;color:var(--gold)}
+.mark-txt{display:flex;flex-direction:column;line-height:1.15}
+.mark-txt b{font-weight:600;font-size:15px;letter-spacing:.01em}
+.mark-txt i{font-style:normal;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+            color:var(--muted);margin-top:2px}
+
+.nav-toggle{display:none;appearance:none;background:none;border:1px solid var(--hair);
+  border-radius:9px;width:44px;height:44px;padding:0;cursor:pointer;
+  align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.nav-toggle span{display:block;width:17px;height:1.6px;background:var(--text);border-radius:2px;
+  transition:transform 200ms ease,opacity 200ms ease}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(5.6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.6px) rotate(-45deg)}
+
+.nav-drawer{position:fixed;inset:0;z-index:120;background:var(--bg);
+  display:flex;flex-direction:column;gap:2px;padding:20px 22px 40px;
+  overflow-y:auto;animation:drawerIn 180ms ease both}
+@keyframes drawerIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.nav-drawer[hidden]{display:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;margin-bottom:12px;border-bottom:1px solid var(--hair)}
+.drawer-brand{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.nav-close{appearance:none;background:none;border:1px solid var(--hair);border-radius:9px;
+  color:var(--text);width:44px;height:44px;font-size:24px;line-height:1;cursor:pointer}
+.nav-drawer > a{display:flex;align-items:center;min-height:56px;padding:6px 2px;
+  font-size:22px;font-family:var(--display);color:var(--text);text-decoration:none;
+  border-bottom:1px solid var(--hair)}
+.nav-drawer > a:active{color:var(--gold)}
+.nav-drawer .drawer-cta{justify-content:center;margin-top:22px;border-bottom:none;
+  font-family:var(--ui);font-size:16px;
+  /* the drawer styles every <a> with a near-white colour; without this the button
+     is near-white text on a near-white pill and reads as an EMPTY button. */
+  color:var(--bg)}
+.nav-drawer .drawer-mail{font-family:var(--ui);font-size:15px;color:var(--muted);
+  border-bottom:none;min-height:44px}
+body.nav-open{overflow:hidden}
+
+/* ── phones ─────────────────────────────────────────────────────── */
+@media (max-width: 879px){
+  .nav-links,.nav-linkedin,.nav-cta{display:none}
+  .nav-toggle{display:inline-flex}
+  .mark-txt b{font-size:14px}
+  /* keep the practice name on ONE line in the top bar — wrapping it looked cramped.
+     The drawer repeats the brand at full size, so nothing is lost. */
+  .mark-txt i{font-size:9px;letter-spacing:.09em;white-space:nowrap}
+  .mark{gap:8px;min-width:0}
+  .mark-ico{width:22px;height:22px}
+
+  /* the hero portrait was a full screen tall — cap it and set it beside the text */
+  .hero{padding-top:var(--s6)}
+  .hero .portrait, .hero-img, .hero figure, .hero img{max-width:230px}
+  .hero img[src*="hero-portrait"]{max-width:230px;width:100%;height:auto;border-radius:14px}
+
+  /* role chips: the labels are long, so tighten them to two lines rather than three.
+     They genuinely cannot sit side by side on a 414px phone. */
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chips > *{width:auto;flex:0 0 auto}
+  .chip{font-size:12.5px;padding:5px 9px;line-height:1.3}
+
+  /* reclaim the dead vertical space */
+  .band{padding-top:56px;padding-bottom:56px}
+  h1{font-size:clamp(30px,10vw,42px);line-height:1.06}
+  .eyebrow{font-size:10px;letter-spacing:.11em}
+  h2{font-size:clamp(23px,7vw,31px)}
+  .big{font-size:clamp(27px,9vw,40px)}
+  p{font-size:15.5px;line-height:1.62}
+  .cta-row{flex-direction:column;align-items:stretch;gap:10px}
+  .cta-row .btn{width:100%;justify-content:center;min-height:50px}
+
+  /* 44px minimum tap targets everywhere */
+  a.btn, .tlink, .foot-in a{min-height:44px;display:inline-flex;align-items:center}
+  .statrow{grid-template-columns:repeat(2,1fr);gap:18px}
+  .adv{grid-template-columns:1fr}
+}
+
+/* the About section is now text-only (owner removed the second portrait) */
+#about .about-in{grid-template-columns:1fr;max-width:74ch}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="mark" href="/" aria-label="Nnamdi Okorafor — Clinician Signature Advisory">
+      <svg class="mark-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor"
+           stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 31 C 13 31, 16 27, 19 23 C 21 28, 22 34, 27 36 L 42 13"/>
+      </svg>
+      <span class="mark-txt"><b>Nnamdi Okorafor</b><i>Clinician Signature Advisory</i></span>
+    </a>
+    <div class="nav-spacer"></div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="/clinician-signature/">Clinician Sign</a>
+      <a href="#writing">Writing</a>
+      <a href="#advisory">Advisory</a>
+    </div>
+    <a class="nav-linkedin" href="https://www.linkedin.com/in/nnamdiokorafor"
+       target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn nav-cta" data-book href="#close">Book a call</a>
+    <button class="nav-toggle" type="button" aria-label="Open menu"
+            aria-expanded="false" aria-controls="navmenu">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>
+
+    <div class="nav-drawer" id="navmenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+      <div class="drawer-head">
+        <span class="drawer-brand">Clinician Signature Advisory</span>
+        <button class="nav-close" type="button" aria-label="Close menu">&times;</button>
+      </div>
+      <a href="#work">Work</a>
+      <a href="/clinician-signature/">Clinician Sign</a>
+      <a href="#writing">Writing</a>
+      <a href="#advisory">Advisory</a>
+      <a href="https://www.linkedin.com/in/nnamdiokorafor" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn drawer-cta" data-book href="#close">Book a free 20-min call</a>
+      <a class="drawer-mail" href="#close" data-u="nnamdi" data-d="cliniciansignature.com">Email</a>
+    </div>
+
+<main id="main">
+
+  <!-- 1 · HERO -->
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <div class="idrow">
+        <img class="portrait-circle" src="/assets/portrait-circle.png" width="480" height="480"
+             alt="Nnamdi Okorafor, RN" fetchpriority="high">
+        <p class="eyebrow">Healthcare systems<br>Clinical AI · Autonomous ops</p>
+      </div>
+      <h1>Nnamdi Okorafor</h1>
+      <p class="creds">BSN, RN · FL + CA</p>
+      <div class="chips">
+        <span class="chip">Clinical nurse manager, ambulatory infusion</span>
+        <span class="chip">Founder, Clinician Signature Advisory</span>
+        <span class="chip">Host, Signal &amp; Noise</span>
+      </div>
+      <p class="role">The clinician who signs the system.</p>
+      <p class="line">I harden AI-health products and infusion-scale operations so a credentialed
+        nurse could put their name on them.</p>
+      <div class="cta-row">
+        <a class="btn" data-book href="#close">Book a free 20-min call</a>
+        <a class="tlink" href="#work">See the work</a>
+      </div>
+      <p class="hero-meta">Florida · Remote · working across US timezones</p>
+    </div>
+
+    <div class="hero-portrait">
+      <!-- Owner decision 2026-09-25: KEEP this hero image. It is a licensed stock portrait
+           and the site spec normally bans stock photography, and the agent flagged that it
+           appears to be a different person from the About headshot. The owner reviewed both
+           and chose to keep it. Do not remove again without asking him first. -->
+      <img src="/assets/hero-portrait.jpg" width="774" height="800" fetchpriority="high"
+           alt="Clinical leader in scrubs on a hospital unit">
+      <div class="proofcard">
+        <ul>
+          <li>16 years in clinical practice</li>
+          <li>ER · oncology · ambulatory infusion</li>
+          <li>Clinical nurse manager, infusion floor</li>
+          <li>Licensed RN — Florida and California</li>
+          <li>Built Obioma, an NCLEX Next Gen platform</li>
+          <li>Hosts <em>Signal &amp; Noise</em>, a clinical podcast</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1b · NUMBERS BAR — peer pattern (Ferrara): stat + caption. Captions are the proof. -->
+  <section class="stats-bar">
+    <div class="wrap stats-in">
+        <div class="stat"><span class="num">50</span><span class="cap">infusions a day through the floor I run</span></div>
+        <div class="stat"><span class="num">100</span><span class="cap">nurses hired, trained or led</span></div>
+        <div class="stat"><span class="num">16</span><span class="cap">years in nursing</span></div>
+        <div class="stat"><span class="num">7</span><span class="cap">clinical settings — ER, CT ICU, transport, home health, corrections, trials, infusion</span></div>
+        <div class="stat"><span class="num">4</span><span class="cap">states practised in — TX, CA, GA, FL</span></div>
+    </div>
+  </section>
+
+  <!-- 2 · WORK -->
+  <section class="band" id="work">
+    <div class="wrap">
+      <h2>Selected work</h2>
+      <p class="work-lede">I run all of this through one agentic harness — isolated agent
+        profiles, scheduled jobs, and a human approval gate on anything that leaves the building.
+        Multiple projects, one operating cadence.</p>
+
+            <a class="row" href="https://obiomacare.com">
+        <div class="still"><img src="/assets/obioma-hero.jpg" alt="" loading="lazy"></div>
+        <div>
+          <h3>Obioma <em>2025–26</em></h3>
+          <p>NCLEX Next Gen clinical-judgment platform. Six-step NCSBN reasoning with an AI tutor
+            that teaches the miss, not the score.</p>
+        </div>
+      </a>
+
+      <a class="row noimg" href="/products/">
+        <div>
+          <h3>Hermes agentic harness <em>current</em></h3>
+          <p>The system that runs the rest of this list. Named agents on separate profiles,
+            recurring jobs on a schedule, and an approval gate before anything ships.</p>
+        </div>
+      </a>
+
+      <a class="row" href="https://studio.podmaster3000.com">
+        <div class="still"><img src="/assets/studio-ui.jpg" alt="" loading="lazy"></div>
+        <div>
+          <h3>PodMaster3000 <em>current</em></h3>
+          <p>An AI podcast studio. Drop in a recording and the pipeline returns a publish-ready
+            package. A QC gate hard-fails bad output and cannot be overridden.</p>
+        </div>
+      </a>
+
+      <a class="row" href="/signal-and-noise/">
+        <div class="still"><img src="/assets/sn-cover.jpg" alt="" loading="lazy"></div>
+        <div>
+          <h3>Signal &amp; Noise <em>ongoing</em></h3>
+          <p>My podcast. Long-form conversations on clinical work, systems and the business of
+            healthcare — video first, because that is where the audience actually is.</p>
+        </div>
+      </a>
+
+      <a class="row" href="https://thehcadaily.com">
+        <div class="still"><img src="/assets/hca-trainer.jpg" alt="" loading="lazy"></div>
+        <div>
+          <h3>The HCA Daily <em>current</em></h3>
+          <p>Clinical exam prep built with Dr. Ashley Hussain-Okorafor. Real drills, real
+            rationales, no filler.</p>
+        </div>
+      </a>
+
+      <div class="row noimg">
+        <div>
+          <h3>Infusion floor <em>current</em></h3>
+          <p>Staffing, throughput, capacity and AKS/Stark on a unit that runs every day. Where the
+            operational instincts come from.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · ADVISORY -->
+  <section class="band band-raised" id="advisory">
+    <div class="wrap">
+      <h2>Clinician <span class="gold">Signature Advisory</span></h2>
+      <p class="practice-lede">My advisory practice. The method is the
+        <a class="tlink" href="/clinician-signature/">Clinician Sign</a> — the test a credentialed
+        clinician applies before signing off on an AI-health product. Operated as a trade name by
+        Nnamdi Okorafor, RN; engagements run through cliniciansignature.com.</p>
+      <div class="adv">
+        <div>
+          <h3>Clinician Sign review</h3>
+          <p>Fractional. I sit on the clinical-safety and eval story until a nurse could sign it.</p>
+          <span class="rate">$200 / hour</span>
+          <p style="margin-top:var(--s5)"><a class="tlink" data-book href="#close">Request advisory</a></p>
+        </div>
+        <div>
+          <h3>Operations audit</h3>
+          <p>Capacity, staffing model, AKS/Stark, and a 90-day plan. I run an infusion floor; I will audit yours.</p>
+          <span class="rate">$5–15k / engagement</span>
+          <p style="margin-top:var(--s5)"><a class="tlink" data-book href="#close">Request an ops audit</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · WRITING -->
+  <section class="band" id="writing">
+    <div class="wrap">
+      <h2>Writing</h2>
+      <a class="w-item" href="/writing/ai-actually-fails">
+        <div>
+          <h3>How AI Actually Fails — and Why Nurses Will Catch It First</h3>
+          <p>AI doesn’t fail loudly. It fails confidently. The questions to ask before a tool touches a patient.</p>
+        </div>
+        <time>Sep 2026</time>
+      </a>
+      <div class="w-item upcoming">
+        <div>
+          <h3>On burnout as a staffing model</h3>
+          <p>Resilience is cheap to buy. A position is not.</p>
+        </div>
+        <time>soon</time>
+      </div>
+      <div class="w-item upcoming">
+        <div>
+          <h3>Closed-loop ops</h3>
+          <p>An agent that finishes a task beats a dashboard that reports on it.</p>
+        </div>
+        <time>soon</time>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="signup">
+      <h3>Clinician Approved</h3>
+      <p>One note a month on clinical AI — what I saw, what broke, what I'd sign.</p>
+      <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Noted — thank you';this.querySelector('button').disabled=true;">
+        <input type="email" required placeholder="you@example.com" aria-label="Email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  </section>
+
+  <!-- 5 · ABOUT -->
+  <section class="band" id="about">
+    <div class="wrap about">
+      <div>
+        <h2>About</h2>
+        <p>I have spent sixteen years at the sharp end of clinical care. Then I stopped surviving the system and started redesigning it. That time across ER, oncology and
+          ambulatory infusion taught me where care actually breaks. Now I find the binding
+          constraint — staffing, capacity, documentation, a safety story that will not hold — and
+          build the loop that closes it. I do the same work for AI-health teams, where the stakes are
+          identical: a real clinician has to sign it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · CLOSE -->
+  <section class="close" id="close">
+    <div class="wrap">
+      <p class="big">Let’s see if it signs.</p>
+      <p class="close-sub">Clinician Signature Advisory — clinical review for AI-health teams.</p>
+      <div class="cta-row">
+        <a class="btn" href="#close" data-u="nnamdi" data-d="cliniciansignature.com">nnamdi<span>@</span>cliniciansignature.com</a>
+        <a class="tlink" data-book href="#close">Book a call</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot-in">
+      <span>© 2026 Nnamdi Valentine Okorafor, BSN, RN</span>
+      <span class="foot-brand">Clinician Signature Advisory · <a href="https://cliniciansignature.com">cliniciansignature.com</a></span>
+      <span class="nav-spacer"></span>
+      <a href="#close" data-u="nnamdi" data-d="cliniciansignature.com">Email</a>
+      <a class="soc" href="https://www.linkedin.com/in/nnamdiokorafor" target="_blank" rel="noopener"
+         aria-label="Nnamdi Okorafor on LinkedIn"><svg class="ico" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21H9z"/></svg></a>
+    </div>
+  </footer>
+
+</main>
+<script>
+// Assemble mailto: at runtime. Cloudflare Email Obfuscation rewrites mailto: hrefs and
+// email-shaped visible text, which broke the contact button. Splitting the address across a
+// tag defeats the text rewrite; assembling the href here defeats the href rewrite.
+document.querySelectorAll('[data-u][data-d]').forEach(function (a) {
+  a.href = 'mailto:' + a.dataset.u + '@' + a.dataset.d;
+});
+// scheduling: Cal.com for now, to be replaced by the PodMaster3000 booking flow when ready
+document.querySelectorAll('[data-book]').forEach(function (a) {
+  a.href = 'https://podmaster3000.com/book/nnamdi';
+  a.target = '_blank';
+  a.rel = 'noopener';
+});
+</script>
+
+<!-- cliniciansign.com is the short defensive domain; it redirects to the primary.
+     The PRIMARY (cliniciansignature.com) is handled server-side by a Cloudflare Transform
+     Rule, so this must not touch it - a JS redirect there would defeat the clean root URL. -->
+<script>
+(function () {
+  var h = location.hostname.replace(/^www\./, '');
+  if (h === 'cliniciansign.com') {
+    location.replace('https://cliniciansignature.com' + location.pathname);
+  }
+})();
+
+// mobile menu — the nav links are hidden under 880px, so this is the only route to them
+(function () {
+  var t = document.querySelector('.nav-toggle'),
+      d = document.getElementById('navmenu'),
+      c = document.querySelector('.nav-close');
+  if (!t || !d) return;
+  function open()  { d.hidden = false; t.setAttribute('aria-expanded','true');
+                     document.body.classList.add('nav-open'); if (c) c.focus(); }
+  function close() { d.hidden = true;  t.setAttribute('aria-expanded','false');
+                     document.body.classList.remove('nav-open'); t.focus(); }
+  t.addEventListener('click', function () { d.hidden ? open() : close(); });
+  if (c) c.addEventListener('click', close);
+  d.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !d.hidden) close();
+  });
+  // if the viewport grows past the breakpoint, never leave the overlay stuck open
+  window.matchMedia('(min-width: 880px)').addEventListener('change', function (m) {
+    if (m.matches && !d.hidden) close();
+  });
+})();
+</script>
+</body>
+</html>

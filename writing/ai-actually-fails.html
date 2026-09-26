@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0A1628">
+<title>How AI Actually Fails — and Why Nurses Will Catch It First | Nnamdi Okorafor</title>
+<meta name="description" content="AI doesn't fail the way you expect. It fails confidently, in ways that look correct. A clinical framework for evaluating AI tools before they touch a patient.">
+<meta property="og:title" content="How AI Actually Fails — and Why Nurses Will Catch It First">
+<meta property="og:description" content="AI doesn't fail loudly. It fails confidently.">
+<meta property="og:image" content="/assets/portrait-opt.jpg">
+<meta property="og:type" content="article">
+<link rel="preload" as="image" href="/assets/portrait-circle.png">
+<style>
+:root{
+  /* ── design tokens ──────────────────────────────────── */
+  --bg:#070B12;          /* dark-first ground */
+  --raised:#0E1622;      /* raised surface, used sparingly */
+  --text:#F3F1EC;        /* paper */
+  --muted:#9AA3B2;
+  --hair:#1C2430;        /* hairline */
+  --gold:#C4A35A;        /* the only accent */
+  /* spacing scale: 4 / 8 */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --s7:48px; --s8:64px; --s9:96px; --s10:128px; --s11:176px;
+  --r:14px;
+  --measure:640px;
+  --ui:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","Geist",Inter,Roboto,Helvetica,Arial,sans-serif;
+  --display:"Iowan Old Style","Palatino Linotype",Palatino,"Times New Roman",Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:var(--ui); font-size:18px; line-height:1.5;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--bg)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:16px;top:16px;background:var(--text);color:var(--bg);padding:10px 16px;z-index:99;border-radius:6px}
+
+/* ─ nav ────────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(7,11,18,.86);
+     backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid var(--hair)}
+.nav a{color:var(--muted);transition:color 200ms ease-out}
+.nav a:hover{color:var(--text)}
+.nav-in{max-width:1120px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;gap:var(--s6)}
+.mark{display:flex;align-items:center;gap:10px;color:var(--text);font-size:15px;letter-spacing:-.01em}
+.no{width:22px;height:22px;border:1px solid var(--hair);border-radius:5px;display:grid;place-items:center;
+    font-size:9px;font-weight:600;letter-spacing:.04em;color:var(--muted)}
+.nav-links{display:flex;gap:var(--s5);font-size:15px}
+.nav-spacer{flex:1}
+.btn{display:inline-block;background:var(--text);color:var(--bg);padding:10px 18px;border-radius:999px;
+     font-size:14px;font-weight:550;transition:opacity 200ms ease-out}
+.btn:hover{opacity:.85}
+
+/* ── 1 HERO ───────────────────────────────────────────── */
+.hero{min-height:calc(100vh - 55px);display:grid;grid-template-columns:1fr 1.05fr;
+      align-items:center;gap:var(--s8);padding:var(--s9) 0}
+.hero-copy{max-width:var(--measure)}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
+h1{font-family:var(--display);font-size:clamp(3.5rem,7vw,5rem);line-height:.98;letter-spacing:-.03em;
+   font-weight:400;margin:var(--s5) 0 var(--s3)}
+.role{font-size:clamp(1.15rem,2.2vw,1.5rem);color:var(--muted);letter-spacing:-.01em}
+.line{font-size:18px;line-height:1.55;margin:var(--s5) 0 var(--s6);color:var(--text);opacity:.92}
+.cta-row{display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap}
+.tlink{color:var(--gold);border-bottom:1px solid rgba(196,163,90,.32);padding-bottom:2px;font-size:15px;
+       transition:border-color 180ms ease-out}
+.tlink:hover{border-color:var(--gold)}
+.hero-meta{font-size:13px;color:var(--muted);margin-top:var(--s6);letter-spacing:.01em}
+
+/* the circle portrait — identity mark in the hero, framed as a portrait not a headshot */
+.portrait-circle{display:block;width:132px;height:132px;border-radius:50%;margin:0 0 22px;
+  border:1px solid var(--hair);box-shadow:0 6px 24px rgba(0,0,0,.35);object-fit:cover}
+
+/* the hero visual — large, the identity of the page */
+.hero-portrait{position:relative}
+.hero-portrait img{border-radius:16px;width:100%;min-width:40vw;max-height:calc(100vh - 160px);
+                   object-fit:cover;object-position:50% 22%;transition:transform 280ms ease-out}
+.hero-portrait:hover img{transform:scale(1.02)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3) var(--s6);margin-top:var(--s5)}
+.facts dt{font-size:13px;color:var(--muted)}
+.facts dd{font-size:13px;color:var(--text);margin:0}
+
+/* ── bands: one idea each, lots of navy ──────────────── */
+.band{padding:var(--s11) 0;border-top:1px solid var(--hair)}
+.band-tight{padding:var(--s10) 0}
+h2{font-size:clamp(1.6rem,3vw,2.1rem);font-weight:500;letter-spacing:-.02em;margin-bottom:var(--s8)}
+h2 .gold{color:var(--gold)}
+
+/* ── 2 WORK — text rows, not tiles ───────────────────── */
+.row{display:grid;grid-template-columns:280px 1fr;gap:var(--s7);padding:var(--s6) 0;
+     border-top:1px solid var(--hair);align-items:start;transition:border-color 200ms ease-out}
+.row:first-of-type{border-top:none}
+.row:hover{border-top-color:#2A3444}
+.row:hover .still img{transform:scale(1.02);opacity:1}
+.row.noimg{grid-template-columns:1fr;gap:0}
+.row.noimg p{max-width:62ch}
+.still{aspect-ratio:16/10;overflow:hidden;border-radius:12px;background:var(--raised)}
+.still img{width:100%;height:100%;object-fit:cover;opacity:.78;transition:transform 280ms ease-out,opacity 200ms ease-out}
+.row h3{font-size:1.15rem;font-weight:550;letter-spacing:-.01em;display:flex;justify-content:space-between;gap:var(--s4)}
+.row h3 em{font-style:normal;color:var(--muted);font-size:14px;font-weight:400;white-space:nowrap}
+.row p{color:var(--muted);font-size:16px;margin-top:var(--s2);max-width:56ch}
+
+/* ── 3 ADVISORY — two text blocks ────────────────────── */
+.adv{display:grid;grid-template-columns:1fr 1fr;gap:var(--s8)}
+.adv h3{font-size:1.05rem;font-weight:550;margin-bottom:var(--s3);letter-spacing:-.01em}
+.adv p{color:var(--muted);font-size:16px;max-width:44ch}
+.rate{display:block;margin-top:var(--s3);font-size:15px;color:var(--gold);letter-spacing:.01em}
+
+/* ── 4 WRITING ───────────────────────────────────────── */
+.w-item{display:grid;grid-template-columns:1fr auto;gap:var(--s5);padding:var(--s5) 0;border-top:1px solid var(--hair)}
+.w-item:first-of-type{border-top:none}
+.w-item h3{font-size:1.02rem;font-weight:500;letter-spacing:-.01em}
+.w-item p{color:var(--muted);font-size:15px;margin-top:var(--s1)}
+.w-item time{color:var(--muted);font-size:14px;white-space:nowrap}
+
+/* ── 5 ABOUT ─────────────────────────────────────────── */
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:var(--s9);align-items:center}
+.about p{font-size:19px;line-height:1.62;max-width:60ch}
+.about img{border-radius:14px;aspect-ratio:1/1;object-fit:cover;object-position:50% 18%;width:100%}
+
+/* ── 6 CLOSE + FOOTER ────────────────────────────────── */
+.close{padding:var(--s11) 0;border-top:1px solid var(--hair)}
+.close .big{font-family:var(--display);font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.05;
+            letter-spacing:-.025em;margin-bottom:var(--s6);max-width:22ch}
+footer{padding:var(--s7) 0 var(--s9);border-top:1px solid var(--hair);color:var(--muted);font-size:14px}
+.foot-in{display:flex;gap:var(--s6);align-items:center;flex-wrap:wrap}
+.foot-in a{color:var(--muted)} .foot-in a:hover{color:var(--text)}
+
+@media (max-width:860px){
+  .wrap{padding:0 22px}
+  .nav-in{padding:12px 18px;gap:var(--s3)}
+  .nav-links{display:none}
+  /* the header was clunky on mobile: name + LinkedIn text + button all competed for 390px.
+     Drop the secondary text link (it lives in the footer) and let the CTA breathe. */
+  .nav a.mark{font-size:14px;gap:8px;min-width:0}
+  .mark .no{width:20px;height:20px;font-size:8px;flex:0 0 20px}
+  .nav .nav-linkedin{display:none}
+  .nav .btn{padding:9px 15px;font-size:13px;white-space:nowrap}
+  .hero{grid-template-columns:1fr;min-height:auto;padding:var(--s8) 0 var(--s9);gap:var(--s7)}
+  .hero-portrait{order:2}
+  .hero-portrait img{min-width:0;max-height:none}
+  .facts{grid-template-columns:1fr 1fr}
+  .row,.adv,.about{grid-template-columns:1fr;gap:var(--s5)}
+  .about img{max-width:340px}
+  .band{padding:var(--s9) 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.article{max-width:680px;margin:0 auto}
+.article h1{font-size:clamp(30px,4.4vw,46px);line-height:1.1;margin:0 0 10px;letter-spacing:-.02em}
+.article .byline{color:var(--muted);font-size:15px;margin:0 0 34px;padding-bottom:22px;border-bottom:1px solid var(--hair)}
+.article h2{font-size:clamp(21px,2.4vw,27px);margin:40px 0 12px;letter-spacing:-.01em}
+.article p{margin:0 0 18px;font-size:18px;line-height:1.62;color:#dfe3e9}
+.article strong{color:var(--text)}
+.article-back{display:inline-block;margin-bottom:26px;font-size:14px;color:var(--muted);text-decoration:none}
+.article-back:hover{color:var(--gold)}
+.signup{margin:46px 0 0;padding:26px 24px;border:1px solid var(--hair);border-radius:14px;background:var(--raised)}
+.signup h3{margin:0 0 6px;font-size:19px}
+.signup p{margin:0 0 16px;font-size:15px;color:var(--muted)}
+.signup form{display:flex;gap:10px;flex-wrap:wrap}
+.signup input{flex:1 1 220px;padding:11px 13px;border-radius:10px;border:1px solid var(--hair);background:var(--bg);color:var(--text);font-size:15px}
+.signup button{padding:11px 18px;border-radius:10px;border:0;background:var(--text);color:var(--bg);font-weight:600;cursor:pointer;font-size:15px}
+/* ══════════════════════════════════════════════════════════════════
+   MOBILE LAYER + BRAND MARK
+   Mobile previously had NO way to navigate (nav links were simply
+   hidden) and the hero portrait consumed a full screen. Both fixed.
+   ══════════════════════════════════════════════════════════════════ */
+.mark{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.mark-ico{width:26px;height:26px;flex:none;color:var(--gold)}
+.mark-txt{display:flex;flex-direction:column;line-height:1.15}
+.mark-txt b{font-weight:600;font-size:15px;letter-spacing:.01em}
+.mark-txt i{font-style:normal;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+            color:var(--muted);margin-top:2px}
+
+.nav-toggle{display:none;appearance:none;background:none;border:1px solid var(--hair);
+  border-radius:9px;width:44px;height:44px;padding:0;cursor:pointer;
+  align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.nav-toggle span{display:block;width:17px;height:1.6px;background:var(--text);border-radius:2px;
+  transition:transform 200ms ease,opacity 200ms ease}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(5.6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.6px) rotate(-45deg)}
+
+.nav-drawer{position:fixed;inset:0;z-index:120;background:var(--bg);
+  display:flex;flex-direction:column;gap:2px;padding:20px 22px 40px;
+  overflow-y:auto;animation:drawerIn 180ms ease both}
+@keyframes drawerIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.nav-drawer[hidden]{display:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;margin-bottom:12px;border-bottom:1px solid var(--hair)}
+.drawer-brand{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.nav-close{appearance:none;background:none;border:1px solid var(--hair);border-radius:9px;
+  color:var(--text);width:44px;height:44px;font-size:24px;line-height:1;cursor:pointer}
+.nav-drawer > a{display:flex;align-items:center;min-height:56px;padding:6px 2px;
+  font-size:22px;font-family:var(--display);color:var(--text);text-decoration:none;
+  border-bottom:1px solid var(--hair)}
+.nav-drawer > a:active{color:var(--gold)}
+.nav-drawer .drawer-cta{justify-content:center;margin-top:22px;border-bottom:none;
+  font-family:var(--ui);font-size:16px;
+  /* the drawer styles every <a> with a near-white colour; without this the button
+     is near-white text on a near-white pill and reads as an EMPTY button. */
+  color:var(--bg)}
+.nav-drawer .drawer-mail{font-family:var(--ui);font-size:15px;color:var(--muted);
+  border-bottom:none;min-height:44px}
+body.nav-open{overflow:hidden}
+
+/* ── phones ─────────────────────────────────────────────────────── */
+@media (max-width: 879px){
+  .nav-links,.nav-linkedin,.nav-cta{display:none}
+  .nav-toggle{display:inline-flex}
+  .mark-txt b{font-size:14px}
+  .mark-txt i{font-size:9.5px;letter-spacing:.12em}
+
+  /* the hero portrait was a full screen tall — cap it and set it beside the text */
+  .hero{padding-top:var(--s6)}
+  .hero .portrait, .hero-img, .hero figure, .hero img{max-width:230px}
+  .hero img[src*="hero-portrait"]{max-width:230px;width:100%;height:auto;border-radius:14px}
+
+  /* role chips were stacking into a tall column */
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chips > *{width:auto;flex:0 0 auto}
+
+  /* reclaim the dead vertical space */
+  .band{padding-top:56px;padding-bottom:56px}
+  h1{font-size:clamp(30px,10vw,42px);line-height:1.06}
+  .eyebrow{font-size:10px;letter-spacing:.11em}
+  h2{font-size:clamp(23px,7vw,31px)}
+  .big{font-size:clamp(27px,9vw,40px)}
+  p{font-size:15.5px;line-height:1.62}
+  .cta-row{flex-direction:column;align-items:stretch;gap:10px}
+  .cta-row .btn{width:100%;justify-content:center;min-height:50px}
+
+  /* 44px minimum tap targets everywhere */
+  a.btn, .tlink, .foot-in a{min-height:44px;display:inline-flex;align-items:center}
+  .statrow{grid-template-columns:repeat(2,1fr);gap:18px}
+  .adv{grid-template-columns:1fr}
+}
+
+/* the About section is now text-only (owner removed the second portrait) */
+#about .about-in{grid-template-columns:1fr;max-width:74ch}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+</style>
+</head><body>
+<nav class="nav">
+  <div class="nav-in">
+    <a class="mark" href="/"><span class="no" aria-hidden="true">NO</span> Nnamdi Okorafor</a>
+    <div class="nav-spacer"></div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#writing">Writing</a>
+      <a href="#advisory">Advisory</a>
+    </div>
+    <a href="#advisory">LinkedIn</a>
+    <a class="btn" href="#close">Book a call</a>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navmenu"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button></div>
+</nav>
+  <div class="nav-drawer" id="navmenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+    <div class="drawer-head">
+      <span class="drawer-brand">Clinician Signature Advisory</span>
+      <button class="nav-close" type="button" aria-label="Close menu">&times;</button>
+    </div>
+    <a href="/#work">Work</a>
+    <a href="/#advisory">Advisory</a>
+    <a href="/#writing">Writing</a>
+    <a href="/clinician-signature/">Clinician Sign</a>
+    <a href="https://www.linkedin.com/in/nnamdiokorafor" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn drawer-cta" data-book href="/#close">Book a free 20-min call</a>
+    <a class="drawer-mail" href="/#close" data-u="nnamdi" data-d="cliniciansignature.com">Email</a>
+  </div>
+<main class="wrap" style="padding:64px 0 90px">
+  <article class="article">
+    <a class="article-back" href="/#writing">← Writing</a>
+    <p>I build AI systems. Not in the abstract — I run a small fleet of autonomous agents that handle scheduling, research, document generation, and publishing.</p>
+<p>That work has taught me something clinical AI is about to teach everyone: <strong>AI doesn't fail the way you expect it to. It fails confidently, in ways that look correct.</strong></p>
+<p>Documentation tools, triage assistants, sepsis alerts, ambient scribes, patient-message drafting. Clinical AI is arriving whether or not anyone asked. Nurses will meet it first, at the point of care — which means nurses, not vendors, will be the ones who notice when it's wrong.</p>
+<h2>The failure that looks like success</h2>
+<p>The failure mode isn't usually a machine that says "I don't know." It's a machine that produces something plausible, well-formatted, and wrong — in the same tone it uses when it's right.</p>
+<p>In the systems I run, the errors I catch are almost never dramatic. They're <strong>small substitutions</strong>: a date that shifted by one day, a name normalised to the more common spelling, a number that appears in two places and disagrees with itself. Everything around the error is correct. That context is what makes it dangerous — it reads as trustworthy.</p>
+<p>My scheduling agent once booked two of my own meetings into the same block and reported both as confirmed. No error. No flag. Two records that each looked fine on their own. I caught it because I happened to look at the day, not because the system told me.</p>
+<p><strong>A system that fails loudly is manageable. A system that fails quietly is the one that hurts someone.</strong></p>
+<h2>The questions to ask before a tool touches a patient</h2>
+<p>If your unit is evaluating an AI tool, these are the ones that separate a real product from a demo.</p>
+<p><strong>What does it do when it can't ground an answer in the source data?</strong> This is the important version of "what happens when it isn't sure," and it's harder than it sounds. In most deployed systems you get a fluent sentence either way, and the confidence signal a developer sees in testing often isn't surfaced to the user at all. So don't ask to see the low-confidence path. <strong>Ask them to show you a case where it declined to answer.</strong> If they can't produce one, it doesn't decline.</p>
+<p><strong>Where does the output go when nobody checks it?</strong> Trace the whole flow, because the risk isn't where you'd expect. Signed notes require authentication, so a drafted note reaching the chart unreviewed is a narrow path. <strong>The wider one is auto-populated flowsheet and vitals fields</strong> — data that flows into the record without a person ever affirming it. Find out what the tool writes and who has to approve it, field by field.</p>
+<p><strong>What is it actually reading?</strong> Ask what data source it draws on and, more usefully, what it ignores. A tool that can't see the medication list is making recommendations with a blind spot — and it won't tell you which one.</p>
+<p><strong>Who is accountable when it's wrong?</strong> Ask the vendor to put it in writing. You'll usually get a version of "the clinician." <strong>Get them to say which clinician, for what decision, and under what conditions</strong> — because that answer determines how much the tool should be doing unsupervised.</p>
+<p><strong>Can you show me the misses?</strong> Any vendor can demo a system being right. <strong>Ask what a false negative looks like, and how often one has happened in the field.</strong> The quality of that answer tells you more than any accuracy figure on a slide.</p>
+<h2>Your new role: the last check</h2>
+<p>There's an uncomfortable truth here. <strong>AI systems are often deployed precisely because nurses are too busy to do everything — and the reviewing work lands on the same nurses.</strong></p>
+<p>That's not a reason to refuse the technology. It's a reason to be deliberate about what you accept. If a tool saves you four minutes of typing but adds two minutes of verification, you haven't gained two minutes. You've gained two minutes and a new failure mode you're now responsible for noticing.</p>
+<p><strong>The nurses who do well in this shift will treat AI output the way they treat a phone order: plausible, probably fine, and confirmed before anyone acts on it.</strong></p>
+<h2>What to do when you catch it</h2>
+<p><strong>Use the formal channel first.</strong> Report it through whatever safety-reporting system your organisation has, in writing, the same way you'd report any other concern. The pattern worth flagging is a wrong output that a colleague accepts as correct — that's a system-level hazard, not a user error.</p>
+<p><strong>And note the regulatory layer.</strong> If the tool is an FDA-cleared device and it contributes to a death or serious injury, the facility has mandatory reporting obligations — medical device reports are due within about ten days. That's not something to route through a suggestion box.</p>
+<h2>The part that matters</h2>
+<p>I'm not warning you off AI. I use it daily, and it has changed what I can build. But the usefulness comes from knowing where the edges are, and right now <strong>those edges are nurses.</strong></p>
+<p>Every deployment I've seen has a person handling the output. The technology will improve. Until it does, <strong>knowing how the machine fails is what turns "the computer said so" into nursing judgement.</strong></p>
+    <p class="byline" style="margin-top:38px;border:0;padding:0"><strong>Nnamdi Okorafor, BSN, RN</strong> — fifteen years across emergency, oncology and ambulatory infusion. Builder of AI systems for healthcare operations. <a href="/" style="color:var(--gold)">nnamdiokorafor.com</a></p>
+    <div class="signup">
+      <h3>Clinician Approved</h3>
+      <p>One note a month on clinical AI — what I saw, what broke, what I'd sign.</p>
+      <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Noted — thank you';this.querySelector('button').disabled=true;">
+        <input type="email" required placeholder="you@example.com" aria-label="Email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </article>
+</main>
+<footer>
+    <div class="wrap foot-in">
+      <span>© 2026 Nnamdi Valentine Okorafor, BSN, RN</span>
+      <span class="nav-spacer"></span>
+      <a href="#close" data-u="nnamdi" data-d="cliniciansignature.com">Email</a>
+      <a href="https://x.com/NnamdiOkorafor">X @NnamdiOkorafor</a>
+      <a href="#advisory">LinkedIn</a>
+    </div>
+  </footer>
+  <script>
+// Assemble mailto: at runtime. Cloudflare Email Obfuscation rewrites mailto: hrefs and
+// email-shaped visible text, which broke the contact button. Splitting the address across a
+// tag defeats the text rewrite; assembling the href here defeats the href rewrite.
+document.querySelectorAll('[data-u][data-d]').forEach(function (a) {
+  a.href = 'mailto:' + a.dataset.u + '@' + a.dataset.d;
+});
+// scheduling: Cal.com for now, to be replaced by the PodMaster3000 booking flow when ready
+document.querySelectorAll('[data-book]').forEach(function (a) {
+  a.href = 'https://cal.com/nnamdiokorafor';
+  a.target = '_blank';
+  a.rel = 'noopener';
+});
+</script>
+<script>
+// mobile menu — the nav links are hidden under 880px, so this is the only route to them
+(function () {
+  var t = document.querySelector('.nav-toggle'),
+      d = document.getElementById('navmenu'),
+      c = document.querySelector('.nav-close');
+  if (!t || !d) return;
+  function open()  { d.hidden = false; t.setAttribute('aria-expanded','true');
+                     document.body.classList.add('nav-open'); if (c) c.focus(); }
+  function close() { d.hidden = true;  t.setAttribute('aria-expanded','false');
+                     document.body.classList.remove('nav-open'); t.focus(); }
+  t.addEventListener('click', function () { d.hidden ? open() : close(); });
+  if (c) c.addEventListener('click', close);
+  d.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !d.hidden) close();
+  });
+  // if the viewport grows past the breakpoint, never leave the overlay stuck open
+  window.matchMedia('(min-width: 880px)').addEventListener('change', function (m) {
+    if (m.matches && !d.hidden) close();
+  });
+})();
+</script>
+</body></html>
